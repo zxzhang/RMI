@@ -30,8 +30,8 @@ public class RORtbl {
       return;
     }
 
-    for (Class c : o.getClass().getInterfaces()) {
-      RemoteObjectRef ror = new RemoteObjectRef(host, port, (int) this.generateObjKey(),
+    for (Class<?> c : o.getClass().getInterfaces()) {
+      RemoteObjectRef ror = new RemoteObjectRef(host, port, this.generateObjKey(),
               c.getName());
       rorTable.put(ror, o);
     }
@@ -43,7 +43,7 @@ public class RORtbl {
     return rorTable.get(ror);
   }
 
-  private long generateObjKey() {
-    return Obj_Key.incrementAndGet();
+  private int generateObjKey() {
+    return (int) Obj_Key.incrementAndGet();
   }
 }

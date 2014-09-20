@@ -56,7 +56,7 @@ public class RemoteObjectRef {
   @Override
   public int hashCode() {
     final int p = 33;
-    final int hash_table_size = 100;
+    final int hash_table_size = 1000;
     int sum = 0;
 
     sum = sum + IP_adr == null ? 0 : IP_adr.hashCode();
