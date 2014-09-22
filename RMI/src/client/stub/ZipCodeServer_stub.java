@@ -1,4 +1,4 @@
-package stub;
+package client.stub;
 
 import client.testzip.ZipCodeList;
 import client.testzip.ZipCodeServer;
