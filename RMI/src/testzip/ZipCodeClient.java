@@ -14,9 +14,9 @@ package testzip;
 
 import java.io.*;
 
-import registry.LocateSimpleRegistry;
-import registry.SimpleRegistry;
 import ror.RemoteObjectRef;
+import client.LocateSimpleRegistry;
+import client.SimpleRegistry;
 
 public class ZipCodeClient {
 

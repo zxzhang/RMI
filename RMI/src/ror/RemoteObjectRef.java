@@ -1,6 +1,7 @@
 package ror;
 
 public class RemoteObjectRef {
+
   public String IP_adr = "localhost";
 
   public int Port = 12323;

@@ -3,6 +3,8 @@ package ror;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
+import client.SimpleRegistry;
+
 // This is simple. ROR needs a new object key for each remote object (or its skeleton). 
 // This can be done easily, for example by using a counter.
 // We also assume a remote object implements only one interface, which is a remote interface.
@@ -13,11 +15,17 @@ public class RORtbl {
   private AtomicLong Obj_Key;
 
   private Map<RemoteObjectRef, Object> rorTable = null;
+  
+  private String serviceName = null;
+  
+  private SimpleRegistry registry = null;
 
   // make a new table.
-  public RORtbl() {
-    Obj_Key = new AtomicLong(0);
-    rorTable = new HashMap<RemoteObjectRef, Object>();
+  public RORtbl(String registryHost, int registryPort, String serviceName) {
+    this.Obj_Key = new AtomicLong(0);
+    this.rorTable = new HashMap<RemoteObjectRef, Object>();
+    this.serviceName = serviceName;
+    this.registry = new SimpleRegistry(registryHost, registryPort);
   }
 
   // add a remote object to the table.
@@ -45,5 +53,13 @@ public class RORtbl {
 
   private int generateObjKey() {
     return (int) Obj_Key.incrementAndGet();
+  }
+  
+  public String getServiceName() {
+    return this.serviceName;
+  }
+  
+  public SimpleRegistry getRegistry() {
+    return this.registry;
   }
 }

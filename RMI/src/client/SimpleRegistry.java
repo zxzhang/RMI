@@ -1,4 +1,4 @@
-package registry;
+package client;
 
 import java.util.*;
 import java.net.*;
