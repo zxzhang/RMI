@@ -1,8 +1,8 @@
 package stub;
 
+import client.testzip.ZipCodeList;
+import client.testzip.ZipCodeServer;
 import ror.RemoteObjectRef;
-import testzip.ZipCodeList;
-import testzip.ZipCodeServer;
 
 public class ZipCodeServer_stub implements ZipCodeServer {
   private RemoteObjectRef ror = null;

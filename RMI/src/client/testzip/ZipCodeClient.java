@@ -1,4 +1,4 @@
-package testzip;
+package client.testzip;
 
 // a client for ZipCodeServer.
 // it uses ZipCodeServer as an interface, and test
@@ -14,9 +14,9 @@ package testzip;
 
 import java.io.*;
 
+import registry.LocateSimpleRegistry;
+import registry.SimpleRegistry;
 import ror.RemoteObjectRef;
-import client.LocateSimpleRegistry;
-import client.SimpleRegistry;
 
 public class ZipCodeClient {
 

@@ -1,4 +1,4 @@
-package testzip;
+package client.testzip;
 
 public interface ZipCodeServer // extends YourRemote or whatever
 {

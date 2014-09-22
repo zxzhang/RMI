@@ -1,4 +1,4 @@
-package testzip;
+package client.testzip;
 
 import java.io.*;
 

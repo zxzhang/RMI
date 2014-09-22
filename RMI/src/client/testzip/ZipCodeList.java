@@ -1,4 +1,4 @@
-package testzip;
+package client.testzip;
 
 public class ZipCodeList {
   String city;
