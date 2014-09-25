@@ -28,7 +28,7 @@ public class Message implements Serializable {
   public Message(Util.MessageType type, RemoteObjectRef ror, String method, Object[] args, String[] argsType,
           String returnType) {
 
-    this.type = Util.MessageType.Client2Server;
+    this.type = type;
     this.ror = ror;
     this.method = method;
     this.args = args;
@@ -39,7 +39,7 @@ public class Message implements Serializable {
 
   public Message(Util.MessageType type, Serializable object) {
 
-    this.type = Util.MessageType.Server2Client;
+    this.type = type;
     this.object = object;
 
   }

@@ -89,7 +89,7 @@ public class ServerThread implements Runnable {
   }
 
   private void processObject(Object object, Message message) {
-    Message returnMessage = new Message(Util.MessageType.Server2Client, null);
+    Message returnMessage = new Message(Util.MessageType.Server2Client, (Serializable) null);
 
     String methodName = message.getMethod();
     Object[] args = message.getArgs();
