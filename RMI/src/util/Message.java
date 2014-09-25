@@ -27,21 +27,17 @@ public class Message implements Serializable {
 
   public Message(Util.MessageType type, RemoteObjectRef ror, String method, Object[] args, String[] argsType,
           String returnType) {
-
     this.type = type;
     this.ror = ror;
     this.method = method;
     this.args = args;
     this.argsType = argsType;
     this.returnType = returnType;
-
   }
 
   public Message(Util.MessageType type, Serializable object) {
-
     this.type = type;
     this.object = object;
-
   }
 
   public Message(Util.MessageType type, String mess) {
@@ -87,18 +83,15 @@ public class Message implements Serializable {
  
   @Override
   public String toString() {
-
     StringBuilder sb = new StringBuilder();
     sb.append("Type: ").append(this.type).append("\t").append("Method: ").append(this.method)
             .append("\t");
 
     if (args != null && returnType != null && ror != null) {
-
       sb.append("Args: ");
       for (int i = 0; i < this.args.length; i++) {
         sb.append(argsType[i]).append(" ").append(args[i]).append(" ");
       }
-
       sb.append("\t");
       sb.append("ReturnType: ").append(this.returnType).append("\t");
     }

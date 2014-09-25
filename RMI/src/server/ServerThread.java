@@ -96,6 +96,8 @@ public class ServerThread implements Runnable {
     String[] argsType = message.getArgsType();
     String returnType = message.getReturnType();
 
+    String exceptionMessage = null;
+    
     Method[] methods = object.getClass().getDeclaredMethods();
     for (Method method : methods) {
 
@@ -112,8 +114,6 @@ public class ServerThread implements Runnable {
       }
 
       method.setAccessible(true);
-
-      String exceptionMessage = null;
 
       try {
         Object newObj = method.invoke(object, args);
@@ -136,19 +136,20 @@ public class ServerThread implements Runnable {
         System.out.println(exceptionMessage);
       }
 
-      if (exceptionMessage != null) {
-        returnMessage = new Message(Util.MessageType.WRONG, exceptionMessage);
-      }
+      break;
+    }
 
-      try {
-        ObjectOutputStream out = new ObjectOutputStream(clientSoc.getOutputStream());
-        out.writeObject(returnMessage);
-        out.close();
-      } catch (IOException e) {
-        System.out.println("IOException!!!");
-        System.out.println(e.getMessage());
-      }
+    if (exceptionMessage != null) {
+      returnMessage = new Message(Util.MessageType.WRONG, exceptionMessage);
+    }
 
+    try {
+      ObjectOutputStream out = new ObjectOutputStream(clientSoc.getOutputStream());
+      out.writeObject(returnMessage);
+      out.close();
+    } catch (IOException e) {
+      System.out.println("IOException!!!");
+      System.out.println(e.getMessage());
     }
   }
 
