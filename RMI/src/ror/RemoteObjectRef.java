@@ -87,13 +87,28 @@ public class RemoteObjectRef {
 
     RemoteObjectRef remoteObj = (RemoteObjectRef) obj;
 
-    if ((this.IP_adr == null && remoteObj.IP_adr != null)
-            || (this.IP_adr != null && !this.IP_adr.equals(remoteObj.IP_adr))
-            || (this.Obj_Key != remoteObj.Obj_Key)
-            || (this.Port != remoteObj.Port)
-            || (this.Remote_Interface_Name == null && remoteObj.Remote_Interface_Name != null)
-            || (this.Remote_Interface_Name != null && !this.Remote_Interface_Name
-                    .equals(remoteObj.Remote_Interface_Name))) {
+    if (this.IP_adr == null && remoteObj.IP_adr != null) {
+      return false;
+    }
+
+    if (this.IP_adr != null && !this.IP_adr.equals(remoteObj.IP_adr)) {
+      return false;
+    }
+
+    if (this.Obj_Key != remoteObj.Obj_Key) {
+      return false;
+    }
+
+    if (this.Port != remoteObj.Port) {
+      return false;
+    }
+
+    if (this.Remote_Interface_Name == null && remoteObj.Remote_Interface_Name != null) {
+      return false;
+    }
+
+    if (this.Remote_Interface_Name != null
+            && !this.Remote_Interface_Name.equals(remoteObj.Remote_Interface_Name)) {
       return false;
     }
 
