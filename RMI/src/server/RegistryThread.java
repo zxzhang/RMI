@@ -23,7 +23,9 @@ public class RegistryThread implements Runnable {
 
   @Override
   public void run() {
+    
     try {
+      
       BufferedReader in = new BufferedReader(new InputStreamReader(clientSoc.getInputStream()));
       PrintWriter out = new PrintWriter(clientSoc.getOutputStream(), true);
       String line = in.readLine();
@@ -32,7 +34,13 @@ public class RegistryThread implements Runnable {
 
         out.println(Util.REGISTRY);
 
-      } else if (line.equals(Util.LOOKUP)) {
+        in.close();
+        out.close();
+        return;
+
+      }
+
+      if (line.equals(Util.LOOKUP)) {
 
         String serviceName = in.readLine();
 
@@ -58,23 +66,32 @@ public class RegistryThread implements Runnable {
           System.out.println("Not found the lookup service...");
         }
 
-      } else if (line.equals(Util.REBIND)) {
-        
+        in.close();
+        out.close();
+        return;
+
+      }
+
+      if (line.equals(Util.REBIND)) {
+
         String serviceName = in.readLine();
         String ro_IPAdr = in.readLine();
         int ro_PortNum = Integer.parseInt(in.readLine());
         int ro_ObjKey = Integer.parseInt(in.readLine());
         String ro_InterfaceName = in.readLine();
         RemoteObjectRef ror = new RemoteObjectRef(ro_IPAdr, ro_PortNum, ro_ObjKey, ro_InterfaceName);
-        
+
         serviceMap.put(serviceName, ror);
         out.println(Util.REBINDACK);
-        
+
         System.out.println("Finish rebind...");
+
+        in.close();
+        out.close();
+        return;
+
       }
 
-      in.close();
-      out.close();
     } catch (IOException e) {
       System.out.println("Registry thread problem...");
       System.out.println(e.getMessage());
