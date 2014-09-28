@@ -92,10 +92,10 @@ public class SimpleRegistry {
     // it is a rebind request, with a service name and ROR.
     out.println("rebind");
     out.println(serviceName);
-    out.println(ror.IP_adr);
-    out.println(ror.Port);
-    out.println(ror.Obj_Key);
-    out.println(ror.Remote_Interface_Name);
+    out.println(ror.getIPAdresss());
+    out.println(ror.getPort());
+    out.println(ror.getObjectKey());
+    out.println(ror.getRemoteInterfaceName());
 
     // it also gets an ack, but this is not used.
     String ack = in.readLine();
