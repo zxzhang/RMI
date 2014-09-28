@@ -32,7 +32,7 @@ public class ZipCodeServer_stub implements ZipCodeServer {
     // TODO Auto-generated method stub
     Object[] args = new Object[]{(Object) newlist};
     String[] argsType = new String[]{"ZipCodeList"};
-    String returnType = "void";
+    String returnType = null; // "void";
     Message m = new Message(
                   Util.MessageType.Client2Server, 
                   ror, 
@@ -97,7 +97,7 @@ public class ZipCodeServer_stub implements ZipCodeServer {
     // TODO Auto-generated method stub
     Object[] args = new Object[]{};
     String[] argsType = new String[]{};
-    String returnType = "void";
+    String returnType = null; // "void";
     Message m = new Message(
                   Util.MessageType.Client2Server, 
                   ror, 
