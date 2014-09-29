@@ -14,7 +14,7 @@ public class ZipCodeServer_stub implements ZipCodeServer {
   private RemoteObjectRef ror = null;
 
   private Message connect(Message m) throws Exception{
-    Socket serverSoc = new Socket(ror.IP_adr, ror.Port);
+    Socket serverSoc = new Socket(ror.getIPAdresss(), ror.getPort());
 	  
 	  ObjectOutputStream out = new ObjectOutputStream(serverSoc.getOutputStream());
 	  out.writeObject(m);
