@@ -29,10 +29,10 @@ public class testLookup {
       RemoteObjectRef ror = sr.lookup(ServiceName);
 
       if (ror != null) {
-        System.out.println("IP address is " + ror.IP_adr);
-        System.out.println("Port num is " + ror.Port);
-        System.out.println("Object key is " + ror.Obj_Key);
-        System.out.println("Interface name is " + ror.Remote_Interface_Name);
+        System.out.println("IP address is " + ror.getIPAdresss());
+        System.out.println("Port num is " + ror.getPort());
+        System.out.println("Object key is " + ror.getObjectKey());
+        System.out.println("Interface name is " + ror.getRemoteInterfaceName());
       } else {
         System.out.println("The service is bound to no remote object.");
       }

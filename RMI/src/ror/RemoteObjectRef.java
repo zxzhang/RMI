@@ -2,13 +2,13 @@ package ror;
 
 public class RemoteObjectRef {
 
-  public String IP_adr = "localhost";
+  private String IP_adr = "localhost";
 
-  public int Port = 12323;
+  private int Port = 12323;
 
-  public int Obj_Key = 0;
+  private int Obj_Key = 0;
 
-  public String Remote_Interface_Name = "";
+  private String Remote_Interface_Name = "";
 
   public RemoteObjectRef(String ip, int port, int obj_key, String riname) {
     IP_adr = ip;
@@ -87,13 +87,28 @@ public class RemoteObjectRef {
 
     RemoteObjectRef remoteObj = (RemoteObjectRef) obj;
 
-    if ((this.IP_adr == null && remoteObj.IP_adr != null)
-            || (this.IP_adr != null && !this.IP_adr.equals(remoteObj.IP_adr))
-            || (this.Obj_Key != remoteObj.Obj_Key)
-            || (this.Port != remoteObj.Port)
-            || (this.Remote_Interface_Name == null && remoteObj.Remote_Interface_Name != null)
-            || (this.Remote_Interface_Name != null && !this.Remote_Interface_Name
-                    .equals(remoteObj.Remote_Interface_Name))) {
+    if (this.IP_adr == null && remoteObj.IP_adr != null) {
+      return false;
+    }
+
+    if (this.IP_adr != null && !this.IP_adr.equals(remoteObj.IP_adr)) {
+      return false;
+    }
+
+    if (this.Obj_Key != remoteObj.Obj_Key) {
+      return false;
+    }
+
+    if (this.Port != remoteObj.Port) {
+      return false;
+    }
+
+    if (this.Remote_Interface_Name == null && remoteObj.Remote_Interface_Name != null) {
+      return false;
+    }
+
+    if (this.Remote_Interface_Name != null
+            && !this.Remote_Interface_Name.equals(remoteObj.Remote_Interface_Name)) {
       return false;
     }
 
@@ -108,5 +123,21 @@ public class RemoteObjectRef {
             .append(this.Remote_Interface_Name).append("\n");
 
     return sb.toString();
+  }
+
+  public String getIPAdresss() {
+    return this.IP_adr;
+  }
+
+  public int getPort() {
+    return this.Port;
+  }
+
+  public int getObjectKey() {
+    return this.Obj_Key;
+  }
+
+  public String getRemoteInterfaceName() {
+    return this.Remote_Interface_Name;
   }
 }
