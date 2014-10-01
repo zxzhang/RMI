@@ -9,7 +9,6 @@ import ror.RemoteObjectRef;
 public class SimpleRegistry {
   // registry holds its port and host, and connects to it each time.
   String Host;
-
   int Port;
 
   // ultra simple constructor.
@@ -44,24 +43,16 @@ public class SimpleRegistry {
     RemoteObjectRef ror;
 
     if (res.equals("found")) {
-
       System.out.println("it is found!.");
 
       // receive ROR data, witout check.
       String ro_IPAdr = in.readLine();
-
       System.out.println(ro_IPAdr);
-
       int ro_PortNum = Integer.parseInt(in.readLine());
-
       System.out.println(ro_PortNum);
-
       int ro_ObjKey = Integer.parseInt(in.readLine());
-
       System.out.println(ro_ObjKey);
-
       String ro_InterfaceName = in.readLine();
-
       System.out.println(ro_InterfaceName);
 
       // make ROR.

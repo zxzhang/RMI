@@ -35,9 +35,15 @@ public class ZipCodeClient {
     SimpleRegistry sr = LocateSimpleRegistry.getRegistry(host, port);
     RemoteObjectRef ror = sr.lookup(serviceName);
 
+    if(ror == null){
+      System.err.println("Error: service not found.");
+      return;
+    }
+    
     // get (create) the stub out of ror.
     ZipCodeServer zcs = (ZipCodeServer) ror.localise();
-
+    
+    
     // reads the data and make a "local" zip code list.
     // later this is sent to the server.
     // again no error check!

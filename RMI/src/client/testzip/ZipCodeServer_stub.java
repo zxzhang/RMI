@@ -1,20 +1,17 @@
-package client.stub;
+package client.testzip;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import client.testzip.ZipCodeList;
-import client.testzip.ZipCodeServer;
 import ror.RemoteObjectRef;
 import util.Message;
 import util.Util;
 
-public class ZipCodeServer_stub implements ZipCodeServer {
-  private RemoteObjectRef ror = null;
+public class ZipCodeServer_stub extends Stub implements ZipCodeServer {
 
   private Message connect(Message m) throws Exception{
-    Socket serverSoc = new Socket(ror.getIPAdresss(), ror.getPort());
+    Socket serverSoc = new Socket(getRor().getIPAdresss(), getRor().getPort());
 	  
 	  ObjectOutputStream out = new ObjectOutputStream(serverSoc.getOutputStream());
 	  out.writeObject(m);
@@ -27,16 +24,17 @@ public class ZipCodeServer_stub implements ZipCodeServer {
     return ret_message;
   }
     
+  
   @Override
   public void initialise(ZipCodeList newlist) {
     // TODO Auto-generated method stub
     Object[] args = new Object[]{(Object) newlist};
-    String[] argsType = new String[]{"ZipCodeList"};
-    String returnType = null; // "void";
+    String[] argsType = new String[]{ZipCodeList.class.toString()};
+    String returnType = "void"; // "void";
     Message m = new Message(
                   Util.MessageType.Client2Server, 
                   ror, 
-                  "initializae", 
+                  "initialise", 
                   args,
                   argsType, 
                   returnType);
@@ -51,8 +49,8 @@ public class ZipCodeServer_stub implements ZipCodeServer {
   public String find(String city) {
     // TODO Auto-generated method stub
     Object[] args = new Object[]{(Object) city};
-    String[] argsType = new String[]{"String"};
-    String returnType = "String";
+    String[] argsType = new String[]{String.class.toString()};
+    String returnType = String.class.toString();
     Message m = new Message(
                   Util.MessageType.Client2Server, 
                   ror, 
@@ -75,7 +73,7 @@ public class ZipCodeServer_stub implements ZipCodeServer {
     // TODO Auto-generated method stub
     Object[] args = new Object[]{};
     String[] argsType = new String[]{};
-    String returnType = "ZipCodeList";
+    String returnType = ZipCodeList.class.toString();
     Message m = new Message(
                   Util.MessageType.Client2Server, 
                   ror, 
@@ -97,7 +95,7 @@ public class ZipCodeServer_stub implements ZipCodeServer {
     // TODO Auto-generated method stub
     Object[] args = new Object[]{};
     String[] argsType = new String[]{};
-    String returnType = null; // "void";
+    String returnType = "void"; // "void";
     Message m = new Message(
                   Util.MessageType.Client2Server, 
                   ror, 

@@ -1,5 +1,6 @@
 package ror;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -42,6 +43,14 @@ public class RORtbl {
       RemoteObjectRef ror = new RemoteObjectRef(host, port, this.generateObjKey(),
               c.getName());
       rorTable.put(ror, o);
+      
+      // rebind the serivce to the registry server
+      try {
+        this.registry.rebind(this.serviceName, ror);
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
     }
   }
 

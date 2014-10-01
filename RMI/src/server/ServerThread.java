@@ -29,21 +29,18 @@ public class ServerThread implements Runnable {
   public void run() {
 
     try {
-
       ObjectInputStream in = new ObjectInputStream(clientSoc.getInputStream());
-
       Message message = (Message) in.readObject();
 
       if (message != null) {
         processMessage(message);
       }
-
     } catch (IOException e) {
       System.out.println("Can't open the socket!");
-      System.out.println(e.getMessage());
+      e.printStackTrace();
     } catch (ClassNotFoundException e) {
       System.out.println("Can't find the message class!");
-      System.out.println(e.getMessage());
+      e.printStackTrace();
     }
 
   }
@@ -54,10 +51,9 @@ public class ServerThread implements Runnable {
       return;
     }
 
-    System.out.println(message.toString());
+//    System.out.println(message.toString());
 
     RemoteObjectRef ror = message.getRor();
-
     Object object = this.tbl.findObj(ror);
 
     if (object == null) {
@@ -91,6 +87,8 @@ public class ServerThread implements Runnable {
   private void processObject(Object object, Message message) {
     Message returnMessage = new Message(Util.MessageType.Server2Client, (Serializable) null);
 
+    System.out.println(message);
+    
     String methodName = message.getMethod();
     Object[] args = message.getArgs();
     String[] argsType = message.getArgsType();
@@ -100,15 +98,12 @@ public class ServerThread implements Runnable {
     
     Method[] methods = object.getClass().getDeclaredMethods();
     for (Method method : methods) {
-
       if (!checkMethodName(methodName, method)) {
         continue;
       }
-
       if (!checkReturnType(returnType, method)) {
         continue;
       }
-
       if (!checkArgsType(argsType, method)) {
         continue;
       }
@@ -117,7 +112,8 @@ public class ServerThread implements Runnable {
 
       try {
         Object newObj = method.invoke(object, args);
-
+        
+        
         if (returnType != null) {
           returnMessage.setObject((Serializable) newObj);
         }
@@ -162,7 +158,7 @@ public class ServerThread implements Runnable {
     return false;
   }
 
-  private boolean checkReturnType(String returnType, Method method) {
+  private boolean checkReturnType(String returnType, Method method) {    
     if (returnType == null && method.getGenericReturnType().toString() == null) {
       return true;
     }
@@ -176,6 +172,8 @@ public class ServerThread implements Runnable {
 
   private boolean checkArgsType(String[] argsType, Method method) {
     Type[] aTypes = method.getGenericParameterTypes();
+
+    
     if (aTypes.length != argsType.length) {
       return false;
     }

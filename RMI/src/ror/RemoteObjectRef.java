@@ -1,13 +1,14 @@
 package ror;
 
-public class RemoteObjectRef {
+import java.io.Serializable;
+
+import client.testzip.Stub;
+
+public class RemoteObjectRef implements Serializable{
 
   private String IP_adr = "localhost";
-
   private int Port = 12323;
-
   private int Obj_Key = 0;
-
   private String Remote_Interface_Name = "";
 
   public RemoteObjectRef(String ip, int port, int obj_key, String riname) {
@@ -37,19 +38,20 @@ public class RemoteObjectRef {
     // arguments etc., in a marshalled form, and CM (yourRMI) sends it out to
     // another place.
     // Here let it return null.
-    Object o = null;
+    Stub o = null;
     try {
       Class<?> c = Class.forName(Remote_Interface_Name + "_stub");
-      o = c.newInstance();
+      o = (Stub) c.newInstance();
+      o.setRor(this);
     } catch (ClassNotFoundException e) {
       o = null;
-      System.out.println(e.getMessage());
+      e.printStackTrace();
     } catch (InstantiationException e) {
       o = null;
-      System.out.println(e.getMessage());
+      e.printStackTrace();
     } catch (IllegalAccessException e) {
       o = null;
-      System.out.println(e.getMessage());
+      e.printStackTrace();
     }
     return o;
   }
