@@ -70,9 +70,6 @@ public class RMIServer {
       System.out.println(e.getMessage());
     }
 
-    /* The seleton ??? */
-    // Class initialskeleton = Class.forName(InitialClassName + "_skel");
-
     // you should also create a remote object table here.
     // it is a table of a ROR and a skeleton.
     // as a hint, I give such a table's interface as RORtbl.java.

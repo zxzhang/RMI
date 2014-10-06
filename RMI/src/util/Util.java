@@ -6,6 +6,10 @@ public class Util {
     Client2Server, Server2Client, RIGHT, WRONG
   }
   
+  public enum RegistryMessageType{
+    Rebind, Lookup
+  }
+  
   public static final String CANTFINDOBJ = "Can't find the object.";
   public static final String WHOAREYOU = "who are you?";
   public static final String REGISTRY = "I am a simple registry.";

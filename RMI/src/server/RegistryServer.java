@@ -19,7 +19,6 @@ public class RegistryServer {
     if (args.length != 1) {
       System.out.println("Please input the right port number...");
     }
-
     port = Integer.parseInt(args[0]);
 
     try {
