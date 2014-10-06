@@ -63,7 +63,7 @@ public class RMIThread implements Runnable {
 	 *            The input message
 	 */
 	private void processMessage(Message message) {
-		if (message.getType() != Util.MessageType.Client2Server) {
+		if (!message.getType().equals(Util.MessageType.Client2Server)) {
 			System.out.println("Wrong type of message...");
 			return;
 		}

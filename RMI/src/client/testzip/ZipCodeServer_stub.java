@@ -114,10 +114,15 @@ public class ZipCodeServer_stub extends Stub implements ZipCodeServer {
 	}
 
 	private boolean checkWrongMessage(Message message) {
-		if (message.getType() == Util.MessageType.WRONG) {
+		if (message.getType().equals(Util.MessageType.WRONG)) {
 			System.out.println("Exception: ");
 			System.out.println(message.getMess());
 			return true;
+		}
+		
+		if (!message.getType().equals(Util.MessageType.Server2Client)) {
+		  System.out.println("Wrong type of message from server.");
+		  return true;
 		}
 
 		return false;
