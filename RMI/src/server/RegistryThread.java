@@ -13,6 +13,7 @@ import util.Util;
 /**
  * @author Sanshuan Hung, Zhengxiong Zhang
  *
+ *         The registry thread handle one request: WHOAREYOU, LOOKUP or REBIND.
  */
 public class RegistryThread implements Runnable {
 	Socket clientSoc = null;
@@ -21,12 +22,14 @@ public class RegistryThread implements Runnable {
 
 	/**
 	 * @param clientSoc
-	 * @param serviceMap
+	 *            Client socket
+	 * @param serviceTable
+	 *            Sevice hashtable
 	 */
 	public RegistryThread(Socket clientSoc,
-			Hashtable<String, RemoteObjectRef> serviceMap) {
+			Hashtable<String, RemoteObjectRef> serviceTable) {
 		this.clientSoc = clientSoc;
-		this.serviceTable = serviceMap;
+		this.serviceTable = serviceTable;
 	}
 
 	@Override

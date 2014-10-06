@@ -12,7 +12,10 @@ import registry.SimpleRegistry;
 
 /**
  * @author Sanshuan Hung, Zhengxiong Zhang
- *
+ * 
+ *         The RORtbl has RemoteObjectReference table, service name and
+ *         registry. You can add object into the table and find objects in the
+ *         table.
  */
 public class RORtbl {
 	// I omit all instance variables. you can use hash table, for example.
@@ -28,8 +31,11 @@ public class RORtbl {
 	// make a new table.
 	/**
 	 * @param registryHost
+	 *            The host name
 	 * @param registryPort
+	 *            The port number
 	 * @param serviceName
+	 *            The service name
 	 */
 	public RORtbl(String registryHost, int registryPort, String serviceName) {
 		this.Obj_Key = new AtomicLong(0);
@@ -45,8 +51,11 @@ public class RORtbl {
 	// In any way, it is better to have it for uniformity.
 	/**
 	 * @param host
+	 *            The host name
 	 * @param port
+	 *            The port number
 	 * @param o
+	 *            The object
 	 */
 	public void addObj(String host, int port, Object o) {
 		if (o == null) {
@@ -76,7 +85,8 @@ public class RORtbl {
 	// given ror, find the corresponding object.
 	/**
 	 * @param ror
-	 * @return
+	 *            The remote object reference
+	 * @return object
 	 */
 	public Object findObj(RemoteObjectRef ror) {
 		// if you use a hash table this is easy.
@@ -84,21 +94,21 @@ public class RORtbl {
 	}
 
 	/**
-	 * @return
+	 * @return generated object key number
 	 */
 	private int generateObjKey() {
 		return (int) Obj_Key.incrementAndGet();
 	}
 
 	/**
-	 * @return
+	 * @return service name
 	 */
 	public String getServiceName() {
 		return this.serviceName;
 	}
 
 	/**
-	 * @return
+	 * @return simple registry
 	 */
 	public SimpleRegistry getRegistry() {
 		return this.registry;

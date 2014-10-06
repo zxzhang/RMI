@@ -4,13 +4,15 @@ import ror.RemoteObjectRef;
 
 /**
  * @author Sanshuan Hung, Zhengxiong Zhang
- *
+ * 
+ *         The Stub class contains remote object reference and the methods to
+ *         process ROR. The getRor() and setRor() methods.
  */
-public class Stub {
+public abstract class Stub {
 	protected RemoteObjectRef ror = null;
 
 	/**
-	 * @return
+	 * @return RemoteObjectRef
 	 */
 	public RemoteObjectRef getRor() {
 		return this.ror;
@@ -18,6 +20,7 @@ public class Stub {
 
 	/**
 	 * @param ror
+	 *            Set the RemoteObjectRef to ror.
 	 */
 	public void setRor(RemoteObjectRef ror) {
 		this.ror = ror;

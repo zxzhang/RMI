@@ -3,9 +3,11 @@ package util;
 /**
  * @author Sanshuan Hung, Zhengxiong Zhang
  *
+ *         The utilities class
  */
 public class Util {
 
+	// message type
 	public enum MessageType {
 		Client2Server, Server2Client, RIGHT, WRONG
 	}
@@ -14,6 +16,7 @@ public class Util {
 	 * public enum RegistryMessageType { Rebind, Lookup }
 	 */
 
+	// message string
 	public static final String CANTFINDOBJ = "Can't find the object.";
 
 	public static final String WHOAREYOU = "who are you?";

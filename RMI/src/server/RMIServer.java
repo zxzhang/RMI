@@ -24,7 +24,8 @@ import ror.RORtbl;
 
 /**
  * @author Sanshuan Hung, Zhengxiong Zhang
- *
+ * 
+ *         Initial the class, build the RORtbl and launch the server.
  */
 public class RMIServer {
 	static String host = "localhost";
@@ -55,8 +56,8 @@ public class RMIServer {
 
 		// it should have its own port. assume you hardwire it.
 		try {
-			host = InetAddress.getLocalHost().getHostAddress();
-			// (InetAddress.getLocalHost()).getHostName();
+			host = InetAddress.getLocalHost().getHostName();
+			// host = InetAddress.getLocalHost().getHostAddress();
 			System.out.println("Use the hostname: " + host);
 		} catch (UnknownHostException e) {
 			System.out.println("Can't get the hostname: " + host);

@@ -8,12 +8,12 @@ import client.testzip.Stub;
 /**
  * @author Sanshuan Hung, Zhengxiong Zhang
  *
+ *         The remote object reference implements Serializable, and contains
+ *         four variables: IP Address, Port Number, Object Key, Remote Interface
+ *         Name.
  */
 public class RemoteObjectRef implements Serializable {
 
-	/**
-   * 
-   */
 	private static final long serialVersionUID = 1L;
 
 	private String IP_adr = "localhost";
@@ -24,6 +24,16 @@ public class RemoteObjectRef implements Serializable {
 
 	private String Remote_Interface_Name = "";
 
+	/**
+	 * @param ip
+	 *            the IP address
+	 * @param port
+	 *            the port number
+	 * @param obj_key
+	 *            the object key number
+	 * @param riname
+	 *            the interface name
+	 */
 	public RemoteObjectRef(String ip, int port, int obj_key, String riname) {
 		IP_adr = ip;
 		Port = port;
@@ -34,7 +44,7 @@ public class RemoteObjectRef implements Serializable {
 	// this method is important, since it is a stub creator.
 	//
 	/**
-	 * @return
+	 * @return stub instance
 	 */
 	public Object localise() {
 		// Implement this as you like: essentially you should
@@ -149,28 +159,28 @@ public class RemoteObjectRef implements Serializable {
 	}
 
 	/**
-	 * @return
+	 * @return IP_adr
 	 */
 	public String getIPAdresss() {
 		return this.IP_adr;
 	}
 
 	/**
-	 * @return
+	 * @return Port
 	 */
 	public int getPort() {
 		return this.Port;
 	}
 
 	/**
-	 * @return
+	 * @return Obj_Key
 	 */
 	public int getObjectKey() {
 		return this.Obj_Key;
 	}
 
 	/**
-	 * @return
+	 * @return Remote_Interface_Name
 	 */
 	public String getRemoteInterfaceName() {
 		return this.Remote_Interface_Name;

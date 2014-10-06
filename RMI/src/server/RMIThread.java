@@ -17,6 +17,8 @@ import util.Util;
 /**
  * @author Sanshuan Hung, Zhengxiong Zhang
  *
+ *         The RMI thread handles the RMI request. Invoke the certain method the
+ *         return the value.
  */
 public class RMIThread implements Runnable {
 
@@ -26,7 +28,9 @@ public class RMIThread implements Runnable {
 
 	/**
 	 * @param clientSoc
+	 *            The client socket
 	 * @param tbl
+	 *            The RORtbl
 	 */
 	public RMIThread(Socket clientSoc, RORtbl tbl) {
 		this.clientSoc = clientSoc;
@@ -56,6 +60,7 @@ public class RMIThread implements Runnable {
 
 	/**
 	 * @param message
+	 *            The input message
 	 */
 	private void processMessage(Message message) {
 		if (message.getType() != Util.MessageType.Client2Server) {
@@ -76,9 +81,6 @@ public class RMIThread implements Runnable {
 		processObject(object, message);
 	}
 
-	/**
-	 * 
-	 */
 	private void processNullObject() {
 		System.out.println("Can't find the object, what is wrong?");
 		Message wrongMessage = new Message(Util.MessageType.WRONG,
@@ -104,7 +106,9 @@ public class RMIThread implements Runnable {
 
 	/**
 	 * @param object
+	 *            The object in RORtbl
 	 * @param message
+	 *            The input message
 	 */
 	private void processObject(Object object, Message message) {
 		Message returnMessage = new Message(Util.MessageType.Server2Client,
@@ -180,8 +184,10 @@ public class RMIThread implements Runnable {
 
 	/**
 	 * @param methodName
+	 *            The method name
 	 * @param method
-	 * @return
+	 *            The method
+	 * @return whether the method is right or not
 	 */
 	private boolean checkMethodName(String methodName, Method method) {
 		String name = method.getName();
@@ -194,8 +200,10 @@ public class RMIThread implements Runnable {
 
 	/**
 	 * @param returnType
+	 *            The return type
 	 * @param method
-	 * @return
+	 *            The method
+	 * @return whether the return type is right or not
 	 */
 	private boolean checkReturnType(String returnType, Method method) {
 		if (returnType == null
@@ -213,8 +221,10 @@ public class RMIThread implements Runnable {
 
 	/**
 	 * @param argsType
+	 *            The arguments type
 	 * @param method
-	 * @return
+	 *            The method
+	 * @return whether the arguments type are right or not
 	 */
 	private boolean checkArgsType(String[] argsType, Method method) {
 		Type[] aTypes = method.getGenericParameterTypes();

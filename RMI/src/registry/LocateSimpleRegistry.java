@@ -3,10 +3,6 @@ package registry;
 import java.net.*;
 import java.io.*;
 
-/**
- * @author Sanshuan Hung, Zhengxiong Zhang
- *
- */
 public class LocateSimpleRegistry {
 	// this is the SOLE static method.
 	// you use it as: LocateSimpleRegistry.getRegistry(123.123.123.123, 2048)

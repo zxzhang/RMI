@@ -7,7 +7,8 @@ import util.Util.MessageType;
 
 /**
  * @author Sanshuan Hung, Zhengxiong Zhang
- *
+ * 
+ *         The Message class sending between client and RMIserver.
  */
 public class Message implements Serializable {
 
@@ -31,11 +32,17 @@ public class Message implements Serializable {
 
 	/**
 	 * @param type
+	 *            Message type
 	 * @param ror
+	 *            RemoteObjectReference type
 	 * @param method
+	 *            Method
 	 * @param args
+	 *            Arguments
 	 * @param argsType
+	 *            Arguments type
 	 * @param returnType
+	 *            Return type
 	 */
 	public Message(Util.MessageType type, RemoteObjectRef ror, String method,
 			Object[] args, String[] argsType, String returnType) {
@@ -49,7 +56,9 @@ public class Message implements Serializable {
 
 	/**
 	 * @param type
+	 *            Message type
 	 * @param object
+	 *            The object
 	 */
 	public Message(Util.MessageType type, Serializable object) {
 		this.type = type;
@@ -58,7 +67,9 @@ public class Message implements Serializable {
 
 	/**
 	 * @param type
+	 *            Message type
 	 * @param mess
+	 *            Message
 	 */
 	public Message(Util.MessageType type, String mess) {
 		this.type = type;
@@ -67,6 +78,7 @@ public class Message implements Serializable {
 
 	/**
 	 * @param object
+	 *            The object
 	 */
 	public void setObject(Serializable object) {
 		this.object = object;

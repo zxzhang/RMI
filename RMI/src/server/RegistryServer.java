@@ -10,7 +10,9 @@ import ror.RemoteObjectRef;
 
 /**
  * @author Sanshuan Hung, Zhengxiong Zhang
- *
+ * 
+ *         the RegistryServer can launch the registry server and provides
+ *         registry service. User should input the port number.
  */
 public class RegistryServer {
 	private static int port = 11123;
@@ -30,7 +32,9 @@ public class RegistryServer {
 
 		try {
 			serverSoc = new ServerSocket(port);
-			String host = InetAddress.getLocalHost().getHostAddress();
+			String host = InetAddress.getLocalHost().getHostName();
+
+			// String host = InetAddress.getLocalHost().getHostAddress();
 
 			System.out.printf("The registry host: %s\n", host);
 

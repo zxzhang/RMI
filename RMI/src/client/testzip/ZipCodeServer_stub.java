@@ -10,6 +10,9 @@ import util.Util;
 /**
  * @author Sanshuan Hung, Zhengxiong Zhang
  *
+ *         ZipCodeServer_stub and ZipCodeServerImpl implement the same interface
+ *         (ZipCodeServer). The sub sends message to the RMI server and the
+ *         server will return a message containing the return value.
  */
 public class ZipCodeServer_stub extends Stub implements ZipCodeServer {
 
@@ -109,7 +112,7 @@ public class ZipCodeServer_stub extends Stub implements ZipCodeServer {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private boolean checkWrongMessage(Message message) {
 		if (message.getType() == Util.MessageType.WRONG) {
 			System.out.println("Exception: ");
