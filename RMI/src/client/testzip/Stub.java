@@ -2,14 +2,24 @@ package client.testzip;
 
 import ror.RemoteObjectRef;
 
+/**
+ * @author Sanshuan Hung, Zhengxiong Zhang
+ *
+ */
 public class Stub {
-  protected RemoteObjectRef ror = null;
+	protected RemoteObjectRef ror = null;
 
-  public RemoteObjectRef getRor(){
-    return this.ror;
-  }
-  
-  public void setRor(RemoteObjectRef ror){
-    this.ror = ror;
-  }
+	/**
+	 * @return
+	 */
+	public RemoteObjectRef getRor() {
+		return this.ror;
+	}
+
+	/**
+	 * @param ror
+	 */
+	public void setRor(RemoteObjectRef ror) {
+		this.ror = ror;
+	}
 }
