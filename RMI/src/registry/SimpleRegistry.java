@@ -1,6 +1,5 @@
 package registry;
 
-import java.util.*;
 import java.net.*;
 import java.io.*;
 
@@ -9,6 +8,7 @@ import ror.RemoteObjectRef;
 public class SimpleRegistry {
   // registry holds its port and host, and connects to it each time.
   String Host;
+
   int Port;
 
   // ultra simple constructor.

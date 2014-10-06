@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Hashtable;
 
 import ror.RemoteObjectRef;
 import util.Util;
@@ -13,34 +13,33 @@ import util.Util;
 public class RegistryThread implements Runnable {
   Socket clientSoc = null;
 
-  ConcurrentHashMap<String, RemoteObjectRef> serviceMap = null;
+  Hashtable<String, RemoteObjectRef> serviceTable = null;
 
-  public RegistryThread(Socket clientSoc, ConcurrentHashMap<String, RemoteObjectRef> serviceMap) {
+  public RegistryThread(Socket clientSoc, Hashtable<String, RemoteObjectRef> serviceMap) {
     this.clientSoc = clientSoc;
-    this.serviceMap = serviceMap;
+    this.serviceTable = serviceMap;
   }
 
   @Override
   public void run() {
-    
+
     try {
       BufferedReader in = new BufferedReader(new InputStreamReader(clientSoc.getInputStream()));
       PrintWriter out = new PrintWriter(clientSoc.getOutputStream(), true);
       String line = in.readLine();
 
-      if (line.equals(Util.WHOAREYOU)) {   // just ask who are you        
+      if (line.equals(Util.WHOAREYOU)) { // just ask who are you
         out.println(Util.REGISTRY);
         in.close();
         out.close();
         return;
-        
-      }else if (line.equals(Util.LOOKUP)) { // CASE LOOKUP
-        String serviceName = in.readLine();
-        serviceName = serviceName.trim();
-        
-        if (serviceMap.containsKey(serviceName)) {
+
+      } else if (line.equals(Util.LOOKUP)) { // CASE LOOKUP
+        String serviceName = in.readLine().trim();
+
+        if (serviceTable.containsKey(serviceName)) {
           out.println(Util.FOUND);
-          RemoteObjectRef ror = serviceMap.get(serviceName);
+          RemoteObjectRef ror = serviceTable.get(serviceName);
 
           String ro_IPAdr = ror.getIPAdresss();
           int ro_PortNum = ror.getPort();
@@ -60,8 +59,8 @@ public class RegistryThread implements Runnable {
         in.close();
         out.close();
         return;
-        
-      }else if (line.equals(Util.REBIND)) { // CASE REBIND
+
+      } else if (line.equals(Util.REBIND)) { // CASE REBIND
         String serviceName = in.readLine().trim();
         String ro_IPAdr = in.readLine().trim();
         int ro_PortNum = Integer.parseInt(in.readLine());
@@ -69,7 +68,7 @@ public class RegistryThread implements Runnable {
         String ro_InterfaceName = in.readLine().trim();
         RemoteObjectRef ror = new RemoteObjectRef(ro_IPAdr, ro_PortNum, ro_ObjKey, ro_InterfaceName);
 
-        serviceMap.put(serviceName, ror);
+        serviceTable.put(serviceName, ror);
         out.println(Util.REBINDACK);
 
         System.out.println("Finish rebind...");

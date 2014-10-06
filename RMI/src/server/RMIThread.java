@@ -14,13 +14,13 @@ import ror.RemoteObjectRef;
 import util.Message;
 import util.Util;
 
-public class ServerThread implements Runnable {
+public class RMIThread implements Runnable {
 
   private Socket clientSoc = null;
 
   private RORtbl tbl = null;
 
-  public ServerThread(Socket clientSoc, RORtbl tbl) {
+  public RMIThread(Socket clientSoc, RORtbl tbl) {
     this.clientSoc = clientSoc;
     this.tbl = tbl;
   }
@@ -51,7 +51,7 @@ public class ServerThread implements Runnable {
       return;
     }
 
-//    System.out.println(message.toString());
+    // System.out.println(message.toString());
 
     RemoteObjectRef ror = message.getRor();
     Object object = this.tbl.findObj(ror);
@@ -88,14 +88,14 @@ public class ServerThread implements Runnable {
     Message returnMessage = new Message(Util.MessageType.Server2Client, (Serializable) null);
 
     System.out.println(message);
-    
+
     String methodName = message.getMethod();
     Object[] args = message.getArgs();
     String[] argsType = message.getArgsType();
     String returnType = message.getReturnType();
 
     String exceptionMessage = null;
-    
+
     Method[] methods = object.getClass().getDeclaredMethods();
     for (Method method : methods) {
       if (!checkMethodName(methodName, method)) {
@@ -112,9 +112,12 @@ public class ServerThread implements Runnable {
 
       try {
         Object newObj = method.invoke(object, args);
-        
-        
-        if (returnType != null) {
+
+        /*
+         * if (returnType != null) { returnMessage.setObject((Serializable) newObj); }
+         */
+
+        if (!returnType.equals("void")) {
           returnMessage.setObject((Serializable) newObj);
         }
 
@@ -154,11 +157,11 @@ public class ServerThread implements Runnable {
     if (name.equals(methodName)) {
       return true;
     }
-    
+
     return false;
   }
 
-  private boolean checkReturnType(String returnType, Method method) {    
+  private boolean checkReturnType(String returnType, Method method) {
     if (returnType == null && method.getGenericReturnType().toString() == null) {
       return true;
     }
@@ -173,7 +176,6 @@ public class ServerThread implements Runnable {
   private boolean checkArgsType(String[] argsType, Method method) {
     Type[] aTypes = method.getGenericParameterTypes();
 
-    
     if (aTypes.length != argsType.length) {
       return false;
     }

@@ -20,13 +20,13 @@ public class Message implements Serializable {
   private String returnType;
 
   private Object object;
-  
+
   private String mess;
 
   private RemoteObjectRef ror;
 
-  public Message(Util.MessageType type, RemoteObjectRef ror, String method, Object[] args, String[] argsType,
-          String returnType) {
+  public Message(Util.MessageType type, RemoteObjectRef ror, String method, Object[] args,
+          String[] argsType, String returnType) {
     this.type = type;
     this.ror = ror;
     this.method = method;
@@ -44,7 +44,7 @@ public class Message implements Serializable {
     this.type = type;
     this.mess = mess;
   }
-  
+
   public void setObject(Serializable object) {
     this.object = object;
   }
@@ -76,11 +76,11 @@ public class Message implements Serializable {
   public Object getObject() {
     return this.object;
   }
-  
+
   public String getMess() {
     return this.mess;
   }
- 
+
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();

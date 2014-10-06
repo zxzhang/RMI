@@ -15,16 +15,16 @@ public class RORtbl {
   // The table would have a key by ROR.
   private AtomicLong Obj_Key;
 
-  private Map<RemoteObjectRef, Object> rorTable = null;
-  
+  private Hashtable<RemoteObjectRef, Object> rorTable = null;
+
   private String serviceName = null;
-  
+
   private SimpleRegistry registry = null;
 
   // make a new table.
   public RORtbl(String registryHost, int registryPort, String serviceName) {
     this.Obj_Key = new AtomicLong(0);
-    this.rorTable = new HashMap<RemoteObjectRef, Object>();
+    this.rorTable = new Hashtable<RemoteObjectRef, Object>();
     this.serviceName = serviceName;
     this.registry = new SimpleRegistry(registryHost, registryPort);
   }
@@ -40,10 +40,9 @@ public class RORtbl {
     }
 
     for (Class<?> c : o.getClass().getInterfaces()) {
-      RemoteObjectRef ror = new RemoteObjectRef(host, port, this.generateObjKey(),
-              c.getName());
+      RemoteObjectRef ror = new RemoteObjectRef(host, port, this.generateObjKey(), c.getName());
       rorTable.put(ror, o);
-      
+
       // rebind the serivce to the registry server
       try {
         this.registry.rebind(this.serviceName, ror);
@@ -63,11 +62,11 @@ public class RORtbl {
   private int generateObjKey() {
     return (int) Obj_Key.incrementAndGet();
   }
-  
+
   public String getServiceName() {
     return this.serviceName;
   }
-  
+
   public SimpleRegistry getRegistry() {
     return this.registry;
   }

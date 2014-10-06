@@ -2,13 +2,22 @@ package ror;
 
 import java.io.Serializable;
 
+import util.Util;
 import client.testzip.Stub;
 
-public class RemoteObjectRef implements Serializable{
+public class RemoteObjectRef implements Serializable {
+
+  /**
+   * 
+   */
+  private static final long serialVersionUID = 1L;
 
   private String IP_adr = "localhost";
+
   private int Port = 12323;
+
   private int Obj_Key = 0;
+
   private String Remote_Interface_Name = "";
 
   public RemoteObjectRef(String ip, int port, int obj_key, String riname) {
@@ -58,21 +67,19 @@ public class RemoteObjectRef implements Serializable{
 
   @Override
   public int hashCode() {
-    final int p = 33;
-    final int hash_table_size = 1000;
     int sum = 0;
 
     sum = sum + IP_adr == null ? 0 : IP_adr.hashCode();
-    sum = sum % hash_table_size;
+    sum = sum % Util.hash_table_size;
 
-    sum = sum * p + Obj_Key;
-    sum = sum % hash_table_size;
+    sum = sum * Util.p + Obj_Key;
+    sum = sum % Util.hash_table_size;
 
-    sum = sum * p + Port;
-    sum = sum % hash_table_size;
+    sum = sum * Util.p + Port;
+    sum = sum % Util.hash_table_size;
 
-    sum = sum * p + Remote_Interface_Name == null ? 0 : Remote_Interface_Name.hashCode();
-    sum = sum % hash_table_size;
+    sum = sum * Util.p + Remote_Interface_Name == null ? 0 : Remote_Interface_Name.hashCode();
+    sum = sum % Util.hash_table_size;
 
     return sum;
   }
