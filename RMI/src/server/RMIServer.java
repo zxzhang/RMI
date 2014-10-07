@@ -138,7 +138,7 @@ public class RMIServer {
 				System.out.println(e.getMessage());
 			}
 
-			Thread server = new Thread(new RMIThread(clientSoc, tbl));
+			Thread server = new Thread(new Dispatcher(clientSoc, tbl));
 			server.start();
 		}
 

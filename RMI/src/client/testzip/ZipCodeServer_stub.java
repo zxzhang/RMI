@@ -4,6 +4,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import remote.Remote;
+import remote.RemoteException;
 import util.Message;
 import util.Util;
 
@@ -14,7 +16,7 @@ import util.Util;
  *         (ZipCodeServer). The sub sends message to the RMI server and the
  *         server will return a message containing the return value.
  */
-public class ZipCodeServer_stub extends Stub implements ZipCodeServer {
+public class ZipCodeServer_stub extends Stub implements ZipCodeServer, Remote {
 
 	private Message connect(Message m) throws Exception {
 		Socket serverSoc = new Socket(getRor().getIPAdresss(), getRor()
@@ -33,7 +35,7 @@ public class ZipCodeServer_stub extends Stub implements ZipCodeServer {
 	}
 
 	@Override
-	public void initialise(ZipCodeList newlist) {
+	public void initialise(ZipCodeList newlist) throws RemoteException {
 		Object[] args = new Object[] { (Object) newlist };
 		String[] argsType = new String[] { ZipCodeList.class.toString() };
 		String returnType = "void"; // "void";
@@ -52,7 +54,7 @@ public class ZipCodeServer_stub extends Stub implements ZipCodeServer {
 	}
 
 	@Override
-	public String find(String city) {
+	public String find(String city) throws RemoteException {
 		Object[] args = new Object[] { (Object) city };
 		String[] argsType = new String[] { String.class.toString() };
 		String returnType = String.class.toString();
@@ -74,7 +76,7 @@ public class ZipCodeServer_stub extends Stub implements ZipCodeServer {
 	}
 
 	@Override
-	public ZipCodeList findAll() {
+	public ZipCodeList findAll() throws RemoteException {
 		Object[] args = new Object[] {};
 		String[] argsType = new String[] {};
 		String returnType = ZipCodeList.class.toString();
@@ -95,7 +97,7 @@ public class ZipCodeServer_stub extends Stub implements ZipCodeServer {
 	}
 
 	@Override
-	public void printAll() {
+	public void printAll() throws RemoteException {
 		Object[] args = new Object[] {};
 		String[] argsType = new String[] {};
 		String returnType = "void"; // "void";
@@ -113,10 +115,16 @@ public class ZipCodeServer_stub extends Stub implements ZipCodeServer {
 		}
 	}
 
-	private boolean checkWrongMessage(Message message) {
+	private boolean checkWrongMessage(Message message) throws RemoteException {
 		if (message.getType().equals(Util.MessageType.WRONG)) {
-			System.out.println("Exception: ");
+			System.out.println("Wrong: ");
 			System.out.println(message.getMess());
+			
+			if (message.getException() != null) {
+			  RemoteException exception = new RemoteException(message.getMess(), message.getException());
+	      throw exception;
+			}
+			
 			return true;
 		}
 		

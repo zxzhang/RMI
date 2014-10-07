@@ -27,6 +27,8 @@ public class Message implements Serializable {
 	private Object object;
 
 	private String mess;
+	
+	private Throwable exception;
 
 	private RemoteObjectRef ror;
 
@@ -84,6 +86,14 @@ public class Message implements Serializable {
 		this.object = object;
 	}
 
+	public void setException(Throwable exception) {
+    this.exception = exception;
+  }
+	
+	public Throwable getException() {
+	  return this.exception;
+	}
+	
 	public RemoteObjectRef getRor() {
 		return this.ror;
 	}

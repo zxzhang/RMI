@@ -20,7 +20,7 @@ import util.Util;
  *         The RMI thread handles the RMI request. Invoke the certain method the
  *         return the value.
  */
-public class RMIThread implements Runnable {
+public class Dispatcher implements Runnable {
 
 	private Socket clientSoc = null;
 
@@ -32,7 +32,7 @@ public class RMIThread implements Runnable {
 	 * @param tbl
 	 *            The RORtbl
 	 */
-	public RMIThread(Socket clientSoc, RORtbl tbl) {
+	public Dispatcher(Socket clientSoc, RORtbl tbl) {
 		this.clientSoc = clientSoc;
 		this.tbl = tbl;
 	}
@@ -122,6 +122,8 @@ public class RMIThread implements Runnable {
 		String returnType = message.getReturnType();
 
 		String exceptionMessage = null;
+		
+		Throwable exception = null;
 
 		Method[] methods = object.getClass().getDeclaredMethods();
 		for (Method method : methods) {
@@ -150,14 +152,17 @@ public class RMIThread implements Runnable {
 				}
 
 			} catch (IllegalAccessException e) {
+			  exception = e;
 				exceptionMessage = e.getMessage();
 				System.out.println("IllegalAccessException!!!");
 				System.out.println(exceptionMessage);
 			} catch (IllegalArgumentException e) {
+			  exception = e;
 				exceptionMessage = e.getMessage();
 				System.out.println("IllegalArgumentException!!!");
 				System.out.println(exceptionMessage);
 			} catch (InvocationTargetException e) {
+			  exception = e;
 				exceptionMessage = e.getMessage();
 				System.out.println("InvocationTargetException!!!");
 				System.out.println(exceptionMessage);
@@ -169,6 +174,7 @@ public class RMIThread implements Runnable {
 		if (exceptionMessage != null) {
 			returnMessage = new Message(Util.MessageType.WRONG,
 					exceptionMessage);
+			returnMessage.setException(exception);
 		}
 
 		try {
