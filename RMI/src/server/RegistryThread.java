@@ -73,7 +73,10 @@ public class RegistryThread implements Runnable {
         String ro_InterfaceName = in.readLine().trim();
         RemoteObjectRef ror = new RemoteObjectRef(ro_IPAdr, ro_PortNum, ro_ObjKey, ro_InterfaceName);
 
-        serviceTable.put(serviceName, ror);
+        if (!serviceTable.contains(serviceName)) {
+          serviceTable.put(serviceName, ror);
+        }
+
         out.println(Util.REBINDACK);
 
         System.out.println("Finish rebind...");
