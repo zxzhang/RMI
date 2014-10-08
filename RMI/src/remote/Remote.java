@@ -1,7 +1,7 @@
 package remote;
 
 /**
- * @author Sanshuan Hung, Zhengxiong Zhang
+ * @author San-Chuan Hung, Zhengxiong Zhang
  *
  */
 public interface Remote {

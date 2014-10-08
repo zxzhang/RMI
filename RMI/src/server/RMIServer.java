@@ -23,7 +23,7 @@ import java.net.*;
 import ror.RORtbl;
 
 /**
- * @author Sanshuan Hung, Zhengxiong Zhang
+ * @author San-Chuan Hung, Zhengxiong Zhang
  * 
  *         Initial the class, build the RORtbl and launch the server.
  */

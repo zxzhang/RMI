@@ -11,7 +11,7 @@ import registry.SimpleRegistry;
 // We also assume a remote object implements only one interface, which is a remote interface.
 
 /**
- * @author Sanshuan Hung, Zhengxiong Zhang
+ * @author San-Chuan Hung, Zhengxiong Zhang
  * 
  *         The RORtbl has RemoteObjectReference table, service name and
  *         registry. You can add object into the table and find objects in the

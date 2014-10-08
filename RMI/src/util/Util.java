@@ -1,7 +1,7 @@
 package util;
 
 /**
- * @author Sanshuan Hung, Zhengxiong Zhang
+ * @author San-Chuan Hung, Zhengxiong Zhang
  *
  *         The utilities class
  */

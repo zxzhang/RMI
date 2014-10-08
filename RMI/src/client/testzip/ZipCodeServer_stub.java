@@ -10,7 +10,7 @@ import util.Message;
 import util.Util;
 
 /**
- * @author Sanshuan Hung, Zhengxiong Zhang
+ * @author San-Chuan Hung, Zhengxiong Zhang
  *
  *         ZipCodeServer_stub and ZipCodeServerImpl implement the same interface
  *         (ZipCodeServer). The sub sends message to the RMI server and the

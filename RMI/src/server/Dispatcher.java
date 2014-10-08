@@ -15,7 +15,7 @@ import util.Message;
 import util.Util;
 
 /**
- * @author Sanshuan Hung, Zhengxiong Zhang
+ * @author San-Chuan Hung, Zhengxiong Zhang
  *
  *         The RMI thread handles the RMI request. Invoke the certain method the
  *         return the value.
