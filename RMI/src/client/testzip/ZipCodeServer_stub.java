@@ -16,7 +16,7 @@ import util.Util;
  *         (ZipCodeServer). The sub sends message to the RMI server and the
  *         server will return a message containing the return value.
  */
-public class ZipCodeServer_stub extends Stub implements ZipCodeServer, Remote {
+public class ZipCodeServer_stub extends Stub implements ZipCodeServer {
 
 	private Message connect(Message m) throws Exception {
 		Socket serverSoc = new Socket(getRor().getIPAdresss(), getRor()

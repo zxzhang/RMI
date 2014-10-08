@@ -13,15 +13,6 @@ public class RemoteException extends java.io.IOException {
 
   public Throwable detail;
 
-  public RemoteException() {
-    initCause(null);
-  }
-
-  public RemoteException(String s) {
-    super(s);
-    initCause(null);
-  }
-
   public RemoteException(String s, Throwable cause) {
     super(s);
     initCause(null);

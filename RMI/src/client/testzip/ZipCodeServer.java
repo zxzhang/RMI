@@ -1,8 +1,9 @@
 package client.testzip;
 
+import remote.Remote;
 import remote.RemoteException;
 
-public interface ZipCodeServer // extends YourRemote or whatever
+public interface ZipCodeServer extends Remote // extends YourRemote or whatever
 {
   public void initialise(ZipCodeList newlist) throws RemoteException;
 
