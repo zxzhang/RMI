@@ -114,7 +114,7 @@ public class Dispatcher implements Runnable {
 		Message returnMessage = new Message(Util.MessageType.Server2Client,
 				(Serializable) null);
 
-		System.out.println(message);
+//		System.out.println(message);
 
 		String methodName = message.getMethod();
 		Object[] args = message.getArgs();

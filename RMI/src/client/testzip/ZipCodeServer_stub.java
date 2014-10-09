@@ -19,9 +19,11 @@ import util.Util;
 public class ZipCodeServer_stub extends Stub implements ZipCodeServer {
 
 	private Message connect(Message m) throws Exception {
+	  
 		Socket serverSoc = new Socket(getRor().getIPAdresss(), getRor()
 				.getPort());
 
+		
 		ObjectOutputStream out = new ObjectOutputStream(
 				serverSoc.getOutputStream());
 		out.writeObject(m);
