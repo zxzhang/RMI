@@ -11,7 +11,7 @@ import ror.RemoteObjectRef;
 import util.Util;
 
 /**
- * @author Sanshuan Hung, Zhengxiong Zhang
+ * @author San-Chuan Hung, Zhengxiong Zhang
  *
  *         The registry thread handle one request: WHOAREYOU, LOOKUP or REBIND.
  */

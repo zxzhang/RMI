@@ -23,7 +23,7 @@ import java.net.*;
 import ror.RORtbl;
 
 /**
- * @author Sanshuan Hung, Zhengxiong Zhang
+ * @author San-Chuan Hung, Zhengxiong Zhang
  * 
  *         Initial the class, build the RORtbl and launch the server.
  */
@@ -52,7 +52,7 @@ public class RMIServer {
 		int registryPort = Integer.parseInt(args[2]);
 		String serviceName = args[3];
 
-		port = 12323;
+		port = 10000;
 
 		// it should have its own port. assume you hardwire it.
 		try {

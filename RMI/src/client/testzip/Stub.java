@@ -3,7 +3,7 @@ package client.testzip;
 import ror.RemoteObjectRef;
 
 /**
- * @author Sanshuan Hung, Zhengxiong Zhang
+ * @author San-Chuan Hung, Zhengxiong Zhang
  * 
  *         The Stub class contains remote object reference and the methods to
  *         process ROR. The getRor() and setRor() methods.

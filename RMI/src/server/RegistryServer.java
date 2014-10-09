@@ -9,7 +9,7 @@ import java.util.Hashtable;
 import ror.RemoteObjectRef;
 
 /**
- * @author Sanshuan Hung, Zhengxiong Zhang
+ * @author San-Chuan Hung, Zhengxiong Zhang
  * 
  *         the RegistryServer can launch the registry server and provides
  *         registry service. User should input the port number.

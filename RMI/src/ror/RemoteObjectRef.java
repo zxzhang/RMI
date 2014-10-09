@@ -6,7 +6,7 @@ import util.Util;
 import client.testzip.Stub;
 
 /**
- * @author Sanshuan Hung, Zhengxiong Zhang
+ * @author San-Chuan Hung, Zhengxiong Zhang
  *
  *         The remote object reference implements Serializable, and contains four variables: IP
  *         Address, Port Number, Object Key, Remote Interface Name.

@@ -15,7 +15,7 @@ import util.Message;
 import util.Util;
 
 /**
- * @author Sanshuan Hung, Zhengxiong Zhang
+ * @author San-Chuan Hung, Zhengxiong Zhang
  *
  *         The RMI thread handles the RMI request. Invoke the certain method the
  *         return the value.
@@ -114,7 +114,7 @@ public class Dispatcher implements Runnable {
 		Message returnMessage = new Message(Util.MessageType.Server2Client,
 				(Serializable) null);
 
-		System.out.println(message);
+//		System.out.println(message);
 
 		String methodName = message.getMethod();
 		Object[] args = message.getArgs();

@@ -6,7 +6,7 @@ import ror.RemoteObjectRef;
 import util.Util.MessageType;
 
 /**
- * @author Sanshuan Hung, Zhengxiong Zhang
+ * @author San-Chuan Hung, Zhengxiong Zhang
  * 
  *         The Message class sending between client and RMIserver.
  */
