@@ -2,6 +2,7 @@ RegistryHost = localhost
 RegistryPort = 8888
 
 compile:
+	rm -rf ./RMI/bin
 	mkdir ./RMI/bin
 	javac -d ./RMI/bin -cp ./RMI/src ./RMI/src/client/testzip/*.java
 	javac -d ./RMI/bin -cp ./RMI/src ./RMI/src/registry/*.java
